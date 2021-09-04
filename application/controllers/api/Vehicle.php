@@ -141,18 +141,22 @@ class Vehicle extends Rest_api {
     {
        
         $api_data = $this->post();
-        $this->exit_validation();
-        $insert_data=array(
-            'request_data'=>json_encode($api_data),
-            'request_type'=>'exit',
-        );
-        $insert_id = $this->common->insert_record('car_plates', $insert_data);
-        $api_details = array(
+          $api_details = array(
             'api_name' => 'exit',
             'api_method' => 'POST',
             'api_data' => json_encode($api_data)
         );
         $this->common->insert_record('api_log', $api_details);
+
+
+        $this->exit_validation();
+        $insert_data=array(
+            'request_data'=>json_encode($api_data),
+            'request_type'=>'exit',
+            'api_log_id'=>$this->db->insert_id();
+        );
+        $insert_id = $this->common->insert_record('car_plates', $insert_data);
+      
         if ($insert_id) 
         {
              $this->commonApiController(true,null,REST_Controller::HTTP_OK,'vehicle exit confirmed.',REST_Controller::HTTP_OK);
@@ -167,6 +171,13 @@ class Vehicle extends Rest_api {
         $driver_image = $this->post('driver_image');
      
         $api_data = $this->post();
+        $api_details = array(
+            'api_name' => 'entry',
+            'api_method' => 'POST',
+            'api_data' => json_encode($api_data)
+        );
+        $this->common->insert_record('api_log', $api_details);
+
         $this->entry_validation();      
 
         unset($api_data['vehicle_image']);
@@ -176,14 +187,10 @@ class Vehicle extends Rest_api {
             'request_type'=>'entry',
             'driver_image'=>$driver_image,
             'vehicle_image'=>$vehicle_image,
+            'api_log_id'=>$this->db->insert_id();
         );
         $insert_id = $this->common->insert_record('car_plates', $insert_data);
-        $api_details = array(
-            'api_name' => 'entry',
-            'api_method' => 'POST',
-            'api_data' => json_encode($api_data)
-        );
-        $this->common->insert_record('api_log', $api_details);
+        
       
         if ($insert_id > 0) 
         {
