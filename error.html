@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<title>noXx</title>
+<link href="http://203.132.93.84/assets/frontend/css/error.css?v=13" rel="stylesheet">
+<script src="http://203.132.93.84/assets/frontend/js/jquery-3.1.1.min.js?v=13"></script>
+<script>
+    var base_url='http://203.132.93.84/';
+</script>
+<body>
+<div class="bgimg">
+  <div class="middle">
+    <img src="http://203.132.93.84/assets/frontend/images/logo.png">
+    <br><br>
+     <h4 id="countdown"></h4>
+     <h2 class="or-text">OR</h2>
+	<button onclick="refresh()" type="button" class="btn" ><img src="http://203.132.93.84/assets/frontend/images/Refresh-Icon.png" class="ref-img"><strong class="refresh-text">Refresh</strong></button>
+    <br>
+    <h4>Please contact the support team.</h4>
+  </div>
+</div>
+<script>
+$( document ).ready(function() {
+	setTimeout(function(){
+		window.location = base_url;
+	},10000);
+});
+function refresh()
+{
+	window.location = base_url;
+}
+var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  $('#countdown').html('Auto refresh in '+ timeleft +' seconds...');
+  timeleft -= 1;
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    window.location = base_url;
+  }
+}, 1000);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+ [Unit]
+ Description=SyncV2
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin/php /var/www/html/index.php admin/SyncV2 start
+
+ [Install]
+ WantedBy=multi-user.target
+ 

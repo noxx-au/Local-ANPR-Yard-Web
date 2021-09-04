@@ -1,0 +1,11 @@
+ [Unit]
+ Description=SyncAppImages
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin/php /var/www/html/index.php SyncAppImages start
+
+ [Install]
+ WantedBy=multi-user.target
+ 

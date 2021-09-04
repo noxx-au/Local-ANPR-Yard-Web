@@ -1,0 +1,11 @@
+ [Unit]
+ Description=LiveCronReport
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin/php /home/secure.noxx.online/public_html/index.php live/CronReport start
+
+ [Install]
+ WantedBy=multi-user.target
+ 

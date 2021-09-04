@@ -1,0 +1,11 @@
+ [Unit]
+ Description=LiveSyncV2
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin/php /home/secure.noxx.online/public_html/index.php live/SyncV2 start
+
+ [Install]
+ WantedBy=multi-user.target
+ 
