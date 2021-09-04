@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="<?=HTTP_ASSETS_PATH_CLIENT; ?>css/bootstrap.min.css">
+
 
 <title>Welcome noXx</title>
 <style type="text/css">
@@ -18,8 +18,8 @@
     <div class="row h-100">
         <div class="col-sm-12 my-auto">
             <div class="mx-auto">
-               <center> <h1 style="color: #FFF;" >Configure Device</h1>
-                <img class="img-fluid" src="<?=HTTP_ASSETS_PATH_CLIENT; ?>images\noxx-png-wide-background.png"></center></div>
+               <center> <h1 style="color: #FFF;" >noXx Local API</h1>
+               
         </div>
     </div>
 </div>

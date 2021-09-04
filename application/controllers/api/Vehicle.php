@@ -139,9 +139,7 @@ class Vehicle extends Rest_api {
     }
     public function exit_post() 
     {
-        $request_headers=$this->input->request_headers();
-        $this->data['request_headers']=$request_headers;
-        $token = $request_headers['token'];
+       
         $api_data = $this->post();
         $this->exit_validation();
         $insert_data=array(
@@ -168,9 +166,6 @@ class Vehicle extends Rest_api {
         $vehicle_image = $this->post('vehicle_image');
         $driver_image = $this->post('driver_image');
      
-        $request_headers=$this->input->request_headers();
-        $this->data['request_headers']=$request_headers;
-        $token = $request_headers['token'];
         $api_data = $this->post();
         $this->entry_validation();      
 
