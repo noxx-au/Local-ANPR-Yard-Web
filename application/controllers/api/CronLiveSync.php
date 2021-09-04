@@ -9,13 +9,11 @@ class CronLiveSync extends CI_Controller {
 		$this->load->model('Common_function_model', 'common');
     }
     public function start()
-	{
-		$this->index();
-		sleep(delay_time+1);		
+	{		
 		while(1)
 		{
 			$this->index();
-			sleep(delay_time+1);
+			sleep(delay_time);
 		}
 	}
  	public function index()
@@ -52,7 +50,9 @@ class CronLiveSync extends CI_Controller {
 				$data_output = json_decode($output);
 				if(!empty($data_output) && $data_output->StatusCode == '200'){
 					$update_data=array(
-						'live_sync'=>1
+						'live_sync'=>1,
+						'driver_image'=>'',
+						'vehicle_image'=>'',
 					);
 					$this->common->update_record('id', $row['id'], 'car_plates', $update_data);
 				}

@@ -8,15 +8,14 @@ class CronServiceStatus extends CI_Controller {
         parent::__construct();
     }
     public function start()
-	{
-		sleep(delay_time);		
+	{		
 		while(1)
 		{
 			$this->index();
 			sleep(delay_time);
 		}		
 	}
- 	public function  index()
+ 	public function index()
 	{
 		$status = shell_exec('systemctl is-failed CronLiveSync.service');
 		if(trim($status)){
