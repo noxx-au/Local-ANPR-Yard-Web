@@ -32,7 +32,7 @@ class CronLiveSync extends CI_Controller {
 			    if($row['request_type'] == 'entry'){
 			    	$url=entry_URL;
 			    	$request_data['vehicle_image']=$row['vehicle_image'];
-			    	$request_data['driver_image']=$row['vehicle_image'];
+			    	$request_data['driver_image']=$row['driver_image'];
 			    }else{
 			    	$url=exit_URL;
 			    }
@@ -51,8 +51,9 @@ class CronLiveSync extends CI_Controller {
 				if(!empty($data_output) && $data_output->StatusCode == '200'){
 					$update_data=array(
 						'live_sync'=>1,
-						'driver_image'=>'',
-						'vehicle_image'=>'',
+						'driver_image'=>null,
+						'vehicle_image'=>null,
+						'updated_date'=>date('Y-m-d H:i:s')
 					);
 					$this->common->update_record('id', $row['id'], 'car_plates', $update_data);
 				}
