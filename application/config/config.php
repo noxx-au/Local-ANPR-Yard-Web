@@ -23,27 +23,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-define("LIVE", true);
-if(LIVE){
-	define("DEFAULT_ROUTE", 'admin/home');	
-}
-else{
-	define("DEFAULT_ROUTE", 'home');	
-}
+
 // OUR API ACCESS
 define("API_TOKEN", "e2fc714c4727ee9395f324cd2e7f331f");
 define("X_API_KEY", "0cc175b9c0f1b6a831c399e269772661");
 define('HTTP_METHOD_NOT_ALLOWED', 'Method Not Allowed');
 
 
-// Visium API
-define("VISIUM_API_URL", "https://dashboard-dev.visium.com.au/kapi/");
-define("VISIUM_API_KEY", "g7CAm3n6XX6c6xF64zAh7v45Y2MXgSrkcKdutUvTu5eUwa2Y7mcQc5yQsnNNgbSH7DaZjnXNMXkp3Qe2rtgUtNu7P9PMBKAASt3Yfn6w35nf58TP7c8Rfh8NHRvHnqRH");
-define("VISIUM_API_SITECODE", "3");
-
-define("LIVE_API_KEY", false);
-define("LIVE_API_USAGE", '2400');
-define("ADMIN_PATH", "");
 define("language", 'english');
 if(isset($_SERVER['REQUEST_URI']))
 {
@@ -53,7 +39,7 @@ if(isset($_SERVER['REQUEST_URI']))
 
 	$config['base_url']	= $ark_root;
 }
-define("VERSION",4);
+
 
 /*
 |--------------------------------------------------------------------------
