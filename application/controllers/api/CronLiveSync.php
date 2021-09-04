@@ -10,6 +10,7 @@ class CronLiveSync extends CI_Controller {
     }
     public function start()
 	{		
+		$this->index();
 		while(1)
 		{
 			$this->index();
@@ -22,7 +23,6 @@ class CronLiveSync extends CI_Controller {
 		if(!empty($result)){
 			foreach ($result as $key => $row) {
 				$handle = curl_init();
-				// $headers[] = 'Authorization: Token '.$live_api_key;
 				$headers =  array(
 			        'Content-Type: application/json',
 			        'token: '.API_TOKEN, 
@@ -56,6 +56,7 @@ class CronLiveSync extends CI_Controller {
 					);
 					$this->common->update_record('id', $row['id'], 'car_plates', $update_data);
 				}
+				sleep(10);
 			}
 		}
 	}
