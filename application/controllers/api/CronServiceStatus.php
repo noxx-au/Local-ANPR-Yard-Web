@@ -7,7 +7,7 @@ class CronServiceStatus extends CI_Controller {
 	{
         parent::__construct();
     }
-    public function  start()
+    public function start()
 	{
 		sleep(delay_time);		
 		while(1)
