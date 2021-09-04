@@ -11,12 +11,12 @@ class CronLiveSync extends CI_Controller {
     public function start()
 	{
 		$this->index();
-		/*sleep(delay_time+1);		
+		sleep(delay_time+1);		
 		while(1)
 		{
 			$this->index();
 			sleep(delay_time+1);
-		}*/
+		}
 	}
  	public function index()
 	{
@@ -39,11 +39,6 @@ class CronLiveSync extends CI_Controller {
 			    	$url=exit_URL;
 			    }
 
-
-				// $verbose = fopen('php://temp', 'w+');
-				// curl_setopt($handle, CURLOPT_STDERR, $verbose);
-
-
 				curl_setopt($handle, CURLOPT_HTTPHEADER, $headers);
 				curl_setopt($handle, CURLOPT_URL, $url);
 				curl_setopt($handle, CURLOPT_CUSTOMREQUEST, "POST");
@@ -53,20 +48,14 @@ class CronLiveSync extends CI_Controller {
 				$output = curl_exec($handle);
 			      
 				curl_close($handle);
+
 				$data_output = json_decode($output);
-				echo "<pre>";
-				print_r($output);exit();
-
-				/*$result = curl_exec($handle);
-				if ($result === FALSE) {
-				    printf("cUrl error (#%d): %s<br>\n", curl_errno($handle),
-				           htmlspecialchars(curl_error($handle)));
+				if(!empty($data_output) && $data_output->StatusCode == '200'){
+					$update_data=array(
+						'live_sync'=>1
+					);
+					$this->common->update_record('id', $row['id'], 'car_plates', $update_data);
 				}
-
-				rewind($verbose);
-				$verboseLog = stream_get_contents($verbose);
-
-				echo "Verbose information:\n<pre>", htmlspecialchars($verboseLog), "</pre>\n";*/
 			}
 		}
 	}
