@@ -1,0 +1,18 @@
+sudo systemctl daemon-reload
+sudo nano /lib/systemd/system/ServiceDownload.service
+
+
+sudo systemctl status CronServiceStatus.service
+sudo systemctl status CronLiveSync.service
+
+sudo systemctl enable CronServiceStatus.service
+sudo systemctl enable CronLiveSync.service
+
+sudo systemctl is-failed CronServiceStatus.service
+sudo systemctl is-failed CronLiveSync.service
+
+sudo systemctl start CronServiceStatus.service
+sudo systemctl start CronLiveSync.service
+
+sudo systemctl stop CronServiceStatus.service
+sudo systemctl stop CronLiveSync.service

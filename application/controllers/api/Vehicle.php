@@ -153,7 +153,7 @@ class Vehicle extends Rest_api {
         $insert_data=array(
             'request_data'=>json_encode($api_data),
             'request_type'=>'exit',
-            'api_log_id'=>$this->db->insert_id();
+            'api_log_id'=>$this->db->insert_id()
         );
         $insert_id = $this->common->insert_record('car_plates', $insert_data);
       
@@ -187,7 +187,7 @@ class Vehicle extends Rest_api {
             'request_type'=>'entry',
             'driver_image'=>$driver_image,
             'vehicle_image'=>$vehicle_image,
-            'api_log_id'=>$this->db->insert_id();
+            'api_log_id'=>$this->db->insert_id()
         );
         $insert_id = $this->common->insert_record('car_plates', $insert_data);
         
