@@ -171,6 +171,8 @@ class Vehicle extends Rest_api {
         $driver_image = $this->post('driver_image');
      
         $api_data = $this->post();
+        unset($api_data['vehicle_image']);
+        unset($api_data['driver_image']);
         $api_details = array(
             'api_name' => 'entry',
             'api_method' => 'POST',
@@ -178,10 +180,16 @@ class Vehicle extends Rest_api {
         );
         $this->common->insert_record('api_log', $api_details);
 
-        $this->entry_validation();      
-
-        unset($api_data['vehicle_image']);
-        unset($api_data['driver_image']);
+        if(in_array($this->post('lane_number'),WEIGHT_LANE))
+        {
+            //here need to call xml request 
+            $api_data['axel_1_weight']=1;
+            $api_data['axel_2_weight']=2;
+            $api_data['axel_3_weight']=3;
+            $api_data['axel_4_weight']=4;
+            $api_data['axel_5_weight']=5;
+            $api_data['axel_6_weight']=6;
+        }    
         $insert_data=array(
             'request_data'=>json_encode($api_data),
             'request_type'=>'entry',
