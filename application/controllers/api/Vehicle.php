@@ -183,12 +183,12 @@ class Vehicle extends Rest_api {
         if(in_array($this->post('lane_number'),WEIGHT_LANE))
         {
             //here need to call xml request 
-            $api_data['axel_1_weight']=1;
-            $api_data['axel_2_weight']=2;
-            $api_data['axel_3_weight']=3;
-            $api_data['axel_4_weight']=4;
-            $api_data['axel_5_weight']=5;
-            $api_data['axel_6_weight']=6;
+            $api_data['axle_group_weight_1']=1;
+            $api_data['axle_group_weight_2']=2;
+            $api_data['axle_group_weight_3']=3;
+            $api_data['axle_group_weight_4']=4;
+            $api_data['axle_group_weight_5']=5;
+            $api_data['axle_group_weight_6']=6;
         }    
         $insert_data=array(
             'request_data'=>json_encode($api_data),
