@@ -1,6 +1,6 @@
 <?php
 	$config['']= array ();
-	define("LIVE_URL", 'http://localhost/ANPR-Yard-Web/api/Vehicle/');
+	define("LIVE_URL", 'https://api.noxx.com.au/api/Vehicle/');
 	define("entry_URL", LIVE_URL.'entry');
 	define("exit_URL", LIVE_URL.'exit');
 	define("delay_time", '60');
