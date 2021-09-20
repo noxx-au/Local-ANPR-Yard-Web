@@ -1,0 +1,1 @@
+php /home/api.noxx.com.au/public_html/index.php websocket
