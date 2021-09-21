@@ -83,10 +83,10 @@ class Vehicle extends Rest_api {
 
              $this->commonApiController(false,null,REST_Controller::HTTP_BAD_REQUEST,"container_no must be allow max 16 char min 5",REST_Controller::HTTP_BAD_REQUEST);
         } 
-        if (!(strtolower($vehicle_type) == 'car' || strtolower($vehicle_type) == 'truck'))
+       /* if (!(strtolower($vehicle_type) == 'car' || strtolower($vehicle_type) == 'truck'))
         {
              $this->commonApiController(false,null,REST_Controller::HTTP_BAD_REQUEST,"vehicle_type allow only car or truck",REST_Controller::HTTP_BAD_REQUEST);
-        }
+        }*/
         if ((!is_numeric($axel_group_weight)) && $axel_group_weight !=  '')
         {
 
