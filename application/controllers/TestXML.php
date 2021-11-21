@@ -5,57 +5,87 @@ if (!defined('BASEPATH'))
 
 class TestXML extends CI_Controller {
 
-	public function __construct() {
+    public function __construct() {
         parent::__construct();
    
 
    
     }
 
-    public function index() {
-    	
-       // Set the url you're making an api call to
-      $endpoint = 'http://10.72.50.111:1234/xml/requestAccess';
-      $xml='<?xml version="1.0" encoding="utf-8"?>
-            <RequestAccess>
-            <Type>ENTRY</Type>
-            <Unit_ID>Inbound</Unit_ID>
-            <Lane_ID>L1</Lane_ID>
-            <Status>GRANTED</Status>
-            </RequestAccess>';
-      $curl = curl_init();
+public function index() {
+ 
+//The XML string that you want to send.
+$xml = '<?xml version="1.0" encoding="utf-8"?>
+<TruckWeighingRequestData>
+<messageID>f81d4fae-7dec-11d0-a765-00a0c91e6bf6</messageID>
+<DateTime>'.date("Y-m-d H:i:s").'</DateTime>
+<TruckRegoNo>ABC123</TruckRegoNo>
+<Limits>
+<Group1>6000</Group1>
+<Group2>10000</Group2>
+<Group3>15000</Group3>
+<Group4>15000</Group4>
+<Group5>15000</Group5>
+</Limits>
+<AdditionalInfo>"936783;T3169U647,21610kg;"</AdditionalInfo>
+</TruckWeighingRequestData>';
 
-      curl_setopt_array($curl, [
-          CURLOPT_URL => $endpoint,
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => "",
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 30,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => $xml,
-          CURLOPT_HTTPHEADER => [
-              "Content-Type: application/xml",
-              'token: e2fc714c4727ee9395f324cd2e7f331f', 
-              'x-api-key:0cc175b9c0f1b6a831c399e269772661'
-          ]
-      ]);
 
-      $response = curl_exec($curl);
-      $error = curl_error($curl);
+//The URL that you want to send your XML to.
+$url = 'http://10.3.18.63:1234/xml/TruckWeighingRequestData';
+// $url="https://api.noxx.com.au/api/xml/requestAccess";
 
-      curl_close($curl);
+//Initiate cURL
+$curl = curl_init($url);
 
-      if ($error) {
-        echo "cURL Error #:" . $error;
-      } else {
-        echo $response;
-      }
+//Set the Content-Type to text/xml.
+curl_setopt ($curl, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
+
+//Set CURLOPT_POST to true to send a POST request.
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_HEADER, 1);
+
+//Attach the XML string to the body of our request.
+curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
+
+//Tell cURL that we want the response to be returned as
+//a string instead of being dumped to the output.
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+
+//Execute the POST request and send our XML.
+$result = curl_exec($curl);
+$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+//echo   "<br/><br/><br/>#HEADER_CODE:".$httpcode;
+// Then, after your curl_exec call:
+$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+$header = substr($result, 0, $header_size);
+$body = substr($result, $header_size);
+if($header!="503")
+{
+    log_message('debug',$body.'\r\n');
+}
+else
+{
+    
+}
+//echo  "<br/><br/><br/>#HEADER:".$header;
+//
+//echo "<br/><br/><br/>#BODY:".$body;
+//Do some basic error checking.
+if(curl_errno($curl)){
+    throw new Exception(curl_error($curl));
+}
+
+//Close the cURL handle.
+curl_close($curl);
+          $this->load->view('vwTextXML');
+//Print out the response output.
+//echo $result;
 
      
     }
-
-
 }
 
 ?>

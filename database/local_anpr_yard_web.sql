@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2021 at 07:48 AM
+-- Generation Time: Oct 06, 2021 at 04:05 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -42,34 +42,15 @@ CREATE TABLE `api_log` (
 --
 
 CREATE TABLE `car_plates` (
-  `cp_id` varchar(36) NOT NULL,
-  `rego` varchar(255) NOT NULL,
-  `container_no` varchar(500) DEFAULT NULL,
-  `axel_group_weight` varchar(100) DEFAULT NULL,
-  `total_weight` varchar(100) DEFAULT NULL,
-  `plate_c` decimal(18,4) NOT NULL DEFAULT 0.0000,
-  `driver_name` varchar(255) DEFAULT NULL,
-  `driver_mobile_no` varchar(20) DEFAULT NULL,
-  `company_name` varchar(255) DEFAULT NULL,
-  `vehicle_type` varchar(255) DEFAULT NULL,
-  `site_entry` datetime DEFAULT NULL,
-  `site_exit` datetime DEFAULT NULL,
-  `exit` int(11) NOT NULL DEFAULT 0,
-  `parked` int(1) NOT NULL DEFAULT 0,
-  `reparked` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `request_data` text DEFAULT NULL,
+  `request_type` varchar(50) DEFAULT NULL,
+  `driver_image` longtext DEFAULT NULL,
+  `vehicle_image` longtext DEFAULT NULL,
+  `live_sync` int(11) DEFAULT 0,
+  `updated_date` datetime NOT NULL DEFAULT current_timestamp(),
   `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_date` datetime NOT NULL,
-  `is_sync` tinyint(1) NOT NULL DEFAULT 0,
-  `trailer_rego` varchar(100) DEFAULT NULL,
-  `manully_exit` tinyint(4) NOT NULL DEFAULT 0,
-  `car_plates_id` int(10) NOT NULL,
-  `rapid_id` int(11) DEFAULT NULL,
-  `order_number` varchar(250) DEFAULT NULL,
-  `cie_id` int(11) DEFAULT NULL,
-  `vehicle_image` text DEFAULT NULL,
-  `drivers_dec` int(11) NOT NULL DEFAULT 0,
-  `driver_image` text DEFAULT NULL,
-  `live_sync` int(11) NOT NULL DEFAULT 0
+  `api_log_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -86,9 +67,7 @@ ALTER TABLE `api_log`
 -- Indexes for table `car_plates`
 --
 ALTER TABLE `car_plates`
-  ADD PRIMARY KEY (`car_plates_id`),
-  ADD UNIQUE KEY `cp_id_2` (`cp_id`),
-  ADD KEY `cp_id` (`cp_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -104,7 +83,7 @@ ALTER TABLE `api_log`
 -- AUTO_INCREMENT for table `car_plates`
 --
 ALTER TABLE `car_plates`
-  MODIFY `car_plates_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

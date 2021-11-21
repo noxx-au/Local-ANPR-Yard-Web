@@ -17,10 +17,10 @@ class CronServiceStatus extends CI_Controller {
 	}
  	public function index()
 	{
-		$status = shell_exec('systemctl is-failed CronLiveSync.service');
+		/*$status = shell_exec('systemctl is-failed CronLiveSync.service');
 		if(trim($status)){
 			shell_exec('systemctl restart CronLiveSync.service');	
-		}	
+		}*/	
 
 		$status = shell_exec('systemctl is-failed WebSocketClient.service');
 		if(trim($status)){

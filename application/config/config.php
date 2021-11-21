@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 define("API_TOKEN", "e2fc714c4727ee9395f324cd2e7f331f");
 define("X_API_KEY", "0cc175b9c0f1b6a831c399e269772661");
 define('HTTP_METHOD_NOT_ALLOWED', 'Method Not Allowed');
-define("WEIGHT_LANE",array(1,3));
+define("WEIGHT_LANE",array('Truck Exit Weighed'));
 
 define("language", 'english');
 if(isset($_SERVER['REQUEST_URI']))
@@ -241,7 +241,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 2;
 
 /*
 |--------------------------------------------------------------------------
